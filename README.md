@@ -37,4 +37,5 @@ Yes! By default, it runs both after the first render and after every update. (We
 ```
 Consider the above code. This useEffect would run infintely without the use of the dependency array [search]. The depedency array allows the useEffect only to run when the array is changed.
 
+## Passing data down & inverse data flow
 
