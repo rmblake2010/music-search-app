@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 //REMEMBER: When deconstructing props use need to pass the name of the variable. NOT the name of the data you passed it.
 const GalleryItem = ({ musicItem }) => {
@@ -16,10 +17,18 @@ const GalleryItem = ({ musicItem }) => {
     const detailedView = () => {
         return (
             <div>
-                <h3>{musicItem.trackName}</h3>
-                <h4>{musicItem.collectionName}</h4>
-                <h4>{musicItem.primaryGenreName}</h4>
-                <h4>{musicItem.releaseDate}</h4>
+                <h2>{musicItem.trackName}</h2>
+                <h3>
+                    <Link to={`/artist/${musicItem.artistId}`}>
+                        {musicItem.artistName}
+                    </Link>
+                </h3>
+                <h3>
+                    <Link to={`/album/${musicItem.collectionId}`}>
+                        {musicItem.collectionName}
+                    </Link>
+                </h3>
+                
             </div>
         )
     }

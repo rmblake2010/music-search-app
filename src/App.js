@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Gallery from './components/Gallery';
 import Searchbar from './components/Searchbar';
+import AlbumView from './components/AlbumView';
+import ArtistView from './components/ArtistView';
 import './App.css';
 
 function App() {
@@ -38,9 +41,20 @@ function App() {
 
   return (
     <div className="App">
-      <Searchbar handleSearch = {handleSearch}/>
       {message}
-      <Gallery data={data}/>
+        <Router>
+          <Routes>
+            {/* We must use a fragment here to render multiple components for a route */}
+            <Route path='/' element={
+              <Fragment>
+                <Searchbar handleSearch={handleSearch}/>
+                <Gallery data={data}/>
+              </Fragment>
+            }/>
+            <Route path='/album/:id' element={<AlbumView />} />
+            <Route path='/artist/:id' element={<ArtistView />} />
+          </Routes>
+        </Router>
     </div>
   );
 }
